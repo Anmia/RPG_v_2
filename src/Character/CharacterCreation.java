@@ -1,5 +1,7 @@
 package Character;
 
+import Functionality.Sort;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -55,6 +57,7 @@ public class CharacterCreation {
 			System.out.println("Enter character name:");
 
 			name = input.nextLine();
+
 			System.out.println("Chosen name is: " + name);
 
 			done = confirmChoice();
@@ -112,7 +115,7 @@ public class CharacterCreation {
 				for (int j = 0; j < 4; j++) {
 					roll[j] = rand.nextInt(6) + 1;
 				}
-				roll = bubblesort(roll);
+				roll = Sort.bubblesort(roll);
 				for (int j = 0; j < 3; j++) {
 					output[i] += roll[j];
 				}
@@ -160,19 +163,4 @@ public class CharacterCreation {
 		return array;
 	}
 
-	public static int[] bubblesort(int[] numbers) {
-		boolean swapped = true;
-		for(int i = numbers.length - 1; i > 0 && swapped; i--) {
-			swapped = false;
-			for (int j = 0; j < i; j++) {
-				if (numbers[j] > numbers[j+1]) {
-					int temp = numbers[j];
-					numbers[j] = numbers[j+1];
-					numbers[j+1] = temp;
-					swapped = true;
-				}
-			}
-		}
-		return numbers;
-	}
 }

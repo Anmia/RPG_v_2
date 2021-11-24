@@ -5,6 +5,9 @@ public class CharacterMain {
 	private static int[] attributes;
 	private static CharacterClass characterClass;
 	private static CharacterRace race;
+	private static int xp = 0;
+	private static int level = 1;
+	private static int levelProcess = 1; //Usedto track what level up process should be used in case of multi-leveling
 
 	private int maxHp;
 
