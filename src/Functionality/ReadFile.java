@@ -27,4 +27,26 @@ public class ReadFile {
 
 		return list;
 	}
+
+	public static ArrayList<String[]> readFile(String fileName, String contains) {
+		ArrayList<String[]> list = new ArrayList<>();
+		String line;
+
+		try {
+			File file = new File(fileName);
+			Scanner fetch = new Scanner(file);
+			while (fetch.hasNextLine()) {
+				line = fetch.nextLine();
+				if (line.contains(contains)) {
+					list.add(line.split(":"));
+				}
+			}
+			fetch.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred! :(");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 }

@@ -12,6 +12,10 @@ public class CharacterRace {
 	private boolean darkVision;
 	private char size;
 
+	private ArrayList<String> proficiency = new ArrayList<>();
+	private ArrayList<String> resistance = new ArrayList<>();
+	private ArrayList<String> immunity = new ArrayList<>();
+
 	public CharacterRace() {
 		selectRace();
 	}
@@ -43,12 +47,57 @@ public class CharacterRace {
 			System.out.println("SHIT!");
 			return;
 		}
+		this.id = Integer.parseInt(races.get(selection)[0]);
 		this.name = races.get(selection)[1];
 		for (int i = 0; i < 6; i++) {
 			this.attributes[i] = Integer.parseInt(races.get(selection)[i + 2]);
 		}
 		this.darkVision = 1 ==Integer.parseInt(races.get(selection)[8]);
 		this.size = races.get(selection)[9].charAt(0);
+
+		ArrayList<String[]> profy = ReadFile.readFile("./src/Character/listClassProficiency.txt", "1:" + this.id);
+
+		boolean hasOption = false;
+
+		for (int i = 0; i < profy.size(); i++) {
+			if (Integer.parseInt(profy.get(i)[3]) == 1) {
+				this.proficiency.add(profy.get(i)[2]);
+			}
+
+			if (Integer.parseInt(profy.get(i)[3]) == 0) {
+				hasOption = true;
+			}
+		}
+		if (hasOption) {
+			this.proficiency.add(selectProfOption(profy));
+		}
+	}
+
+	private static String selectProfOption(ArrayList<String[]> value) {
+		int option = 100;
+		String output = "";
+		boolean done = false;
+		while (!done) {
+			System.out.println("Select an optional proficiency:");
+			int index = 0;
+			for (String[] item : value) {
+				if (Integer.parseInt(item[3]) == 0) {
+					System.out.println(index + " " + item[2]);
+				}
+				index++;
+			}
+
+			Scanner input = new Scanner(System.in);
+			option = Integer.parseInt(input.nextLine());
+			if (option >= value.size()) {
+				System.out.println("Not valid selection");
+			} else {
+				output = value.get(option)[2];
+				done = true;
+			}
+		}
+
+		return output;
 	}
 
 	public String getName() {
@@ -65,5 +114,17 @@ public class CharacterRace {
 
 	public boolean getDarkVision() {
 		return darkVision;
+	}
+
+	public ArrayList<String> getProficiency() {
+		return proficiency;
+	}
+
+	public ArrayList<String> getResistance() {
+		return resistance;
+	}
+
+	public ArrayList<String> getImmunity() {
+		return immunity;
 	}
 }

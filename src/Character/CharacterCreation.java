@@ -103,7 +103,6 @@ public class CharacterCreation {
 	private static int[] randomArray() {
 		boolean done = false;
 		int [] output = new int[6];
-		int [] trueOut = new int[6];
 		while (!done) {
 			Random rand = new Random();
 			String[] names = {"Str", "Dex", "Con", "Int", "Wis", "Cha"};
@@ -112,12 +111,18 @@ public class CharacterCreation {
 
 
 			for (int i = 0; i < 6; i++) {
+				output[i] = 0;
 				for (int j = 0; j < 4; j++) {
 					roll[j] = rand.nextInt(6) + 1;
 				}
 				roll = Sort.bubblesort(roll);
 				for (int j = 0; j < 3; j++) {
 					output[i] += roll[j];
+				}
+
+				if (output[i] < 8) {
+					output[i] = 0;
+					i--;
 				}
 			}
 
@@ -126,11 +131,6 @@ public class CharacterCreation {
 				System.out.println(names[i] + ": " + output[i]);
 			}
 			done = confirmChoice();
-
-			if (done) {
-				trueOut = output;
-				return trueOut;
-			}
 		}
 		return output;
 	}
