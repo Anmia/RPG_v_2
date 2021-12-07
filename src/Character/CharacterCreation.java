@@ -1,19 +1,22 @@
 package Character;
 
+import Functionality.ReadFile;
 import Functionality.Sort;
 
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class CharacterCreation {
+	ArrayList<String> proficienciesList = new ArrayList<>();
+
 	public static CharacterMain createChar() {
 		CharacterRace race = new CharacterRace();
 		CharacterClass oClass = new CharacterClass();
 
+
+
 		String name = selectName();
 
-		int[] attributes = atributes(race);
+		int[] attributes = attributes(race);
 
 
 		CharacterMain you = new CharacterMain(
@@ -59,17 +62,18 @@ public class CharacterCreation {
 			name = input.nextLine();
 
 			System.out.println("Chosen name is: " + name);
-
-			done = confirmChoice();
-			if (input.nextLine().length() > 10) {
-				done = false;
+			if (name.length() > 10) {
 				System.out.println("Name has max length of 10!");
+			} else {
+				done = confirmChoice();
 			}
+
+
 		}
 		return name;
 	}
 
-	private static int[] atributes(CharacterRace race){
+	private static int[] attributes(CharacterRace race){
 		boolean done = false;
 		int[] output = new int[6];
 		while (!done) {
@@ -163,4 +167,7 @@ public class CharacterCreation {
 		return array;
 	}
 
+	private static void proficiencies (ArrayList<String> input) {
+
+	}
 }

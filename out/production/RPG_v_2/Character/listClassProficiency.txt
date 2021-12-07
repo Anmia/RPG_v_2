@@ -1,7 +1,4 @@
-1:102:smith-tools:0
-1:102:brewer-tools:0
-1:102:mason-tools:0
-1:102:battleaxe:1
-1:102:handaxe:1
-1:102:light hammer:1
-1:102:warhammer:1
+102:light armour:1
+102:medium armour:1
+102:heavy armour:1
+102:shield:1
