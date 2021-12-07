@@ -4,7 +4,6 @@ import Functionality.CheckParse;
 import Functionality.ReadFile;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class CharacterClass {
@@ -17,7 +16,7 @@ public class CharacterClass {
 	private int hitDice;
 
 	public CharacterClass() {
-		selectClass();;
+		selectClass();
 	}
 
 
@@ -25,7 +24,6 @@ public class CharacterClass {
 		boolean done = false;
 		ArrayList<String[]> oClass = ReadFile.readFile("./src/Character/listClass.txt");
 		int selection = -1;
-		int option;
 
 		while (!done) {
 			Scanner input = new Scanner(System.in);
@@ -37,7 +35,7 @@ public class CharacterClass {
 			String line = input.nextLine();
 
 			if (CheckParse.isInt(line)) {
-				option = Integer.parseInt(line);
+				int option = Integer.parseInt(line);
 
 				if (option >= oClass.size() || option < 0) {
 					System.out.println("Not valid selection");
@@ -60,12 +58,6 @@ public class CharacterClass {
 		//Resistances
 
 		//Immunities
-	}
-
-	private static String selectProfOption(ArrayList<String[]> value) {
-		String output = "";
-
-		return output;
 	}
 
 	public int getId() {

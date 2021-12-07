@@ -25,7 +25,6 @@ public class CharacterRace {
 		boolean done = false;
 		ArrayList<String[]> races = ReadFile.readFile("./src/Character/listRace.txt");
 		int selection = -1;
-		int option = 100;
 		
 		while (!done) {
 			Scanner input = new Scanner(System.in);
@@ -37,7 +36,7 @@ public class CharacterRace {
 			String line = input.nextLine();
 
 			if (CheckParse.isInt(line)) {
-				option = Integer.parseInt(line);
+				int option = Integer.parseInt(line);
 
 				if (option >= races.size() || option < 0) {
 					System.out.println("Not valid selection");
@@ -51,10 +50,6 @@ public class CharacterRace {
 
 		}
 
-		if (selection == -1) {
-			System.out.println("SHIT!");
-			return;
-		}
 		this.id = Integer.parseInt(races.get(selection)[0]);
 		this.name = races.get(selection)[1];
 		for (int i = 0; i < 6; i++) {
@@ -68,12 +63,6 @@ public class CharacterRace {
 		//Resistances
 
 		//Immunities
-	}
-
-	private static String selectProfOption(ArrayList<String[]> value) {
-		String output = "";
-
-		return output;
 	}
 
 	public String getName() {

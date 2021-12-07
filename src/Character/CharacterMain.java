@@ -17,7 +17,7 @@ public class CharacterMain {
 
 	private int maxHp;
 
-	private  Map<String, Boolean> PROFICIENCIES = new HashMap<>();
+	private final   Map<String, Boolean> PROFICIENCIES = new HashMap<>();
 
 
 	public CharacterMain(String name, int[] attributes, CharacterClass characterClass, CharacterRace race) {
