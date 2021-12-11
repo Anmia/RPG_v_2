@@ -1,5 +1,10 @@
 package Character;
 
+import Character.Classes.CharacterClass;
+import Character.Classes.CharacterClassFighter;
+import Character.Race.CharacterRace;
+import Character.Race.CharacterRaceDwarf;
+import Functionality.CheckParse;
 import Functionality.ReadFile;
 import Functionality.Sort;
 
@@ -9,8 +14,9 @@ public class CharacterCreation {
 	ArrayList<String> proficienciesList = new ArrayList<>();
 
 	public static CharacterMain createChar() {
-		CharacterRace race = new CharacterRace();
-		CharacterClass oClass = new CharacterClass();
+		CharacterRace race = selectRace();
+		CharacterClass oClass = selectClass();
+
 
 
 
@@ -26,6 +32,71 @@ public class CharacterCreation {
 				race
 		);
 		return you;
+	}
+
+	private static CharacterClass selectClass() {
+		boolean done = false;
+		CharacterClass output = new CharacterClass();
+		while (!done) {
+			Scanner input = new Scanner(System.in);
+			System.out.println("Select a class:\n" +
+					"0: Fighter");
+
+
+			String line = input.nextLine();
+
+			if (CheckParse.isInt(line)) {
+				int option = Integer.parseInt(line);
+
+				switch (option) {
+					case 0:
+						output = new CharacterClassFighter();
+						System.out.println("You chose class: Fighter");
+						done = confirmChoice();
+						break;
+					default:
+						System.out.println("Not valid selection");
+						break;
+				}
+			} else {
+				System.out.println("Not valid selection");
+			}
+		}
+		return output;
+	}
+
+	private static CharacterRace selectRace() {
+		boolean done = false;
+
+		int selection = -1;
+
+		while (!done) {
+			Scanner input = new Scanner(System.in);
+			System.out.println("Select a race:");
+
+
+			String line = input.nextLine();
+
+			if (CheckParse.isInt(line)) {
+				int option = Integer.parseInt(line);
+
+				switch (option) {
+					case 0:
+						System.out.println("You selected: Dwarf");
+						done = confirmChoice();
+						return new CharacterRaceDwarf();
+						// break;
+					default:
+						System.out.println("Not valid selection");
+						break;
+				}
+			} else {
+				System.out.println("Not valid selection");
+			}
+
+		}
+		CharacterRace output = new CharacterRace();
+		return output;
 	}
 
 	private static boolean confirmChoice() {
