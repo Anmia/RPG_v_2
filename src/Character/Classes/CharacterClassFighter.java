@@ -13,7 +13,9 @@ public class CharacterClassFighter extends CharacterClass {
 		super.proficiency.add("heavy armour");
 		super.proficiency.add("shield");
 
-
+		if (super.proficiencyOptions.size() != 0) {
+			super.setProficiency();
+		}
 	}
 
 

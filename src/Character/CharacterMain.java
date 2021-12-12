@@ -1,7 +1,7 @@
 package Character;
 
 import Character.Classes.CharacterClass;
-import Character.Race.CharacterRace;
+import Character.Race.Race;
 import Functionality.ReadFile;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class CharacterMain {
 	private String name;
 	private int[] attributes;
 	private CharacterClass characterClass;
-	private CharacterRace race;
+	private Race race;
 	private int xp = 0; //Xp tracker
 	private int level = 1; //Char level
 	private int levelProcess = 1; //Used to track what level up process should be used in case of multi-leveling
@@ -24,7 +24,7 @@ public class CharacterMain {
 	private Map<String, Boolean> IMMUNITIES = new HashMap<>();
 
 
-	public CharacterMain(String name, int[] attributes, CharacterClass characterClass, CharacterRace race) {
+	public CharacterMain(String name, int[] attributes, CharacterClass characterClass, Race race) {
 
 		this.name = name;
 		this.attributes = attributes;
@@ -37,21 +37,24 @@ public class CharacterMain {
 	}
 
 	private void fillProficienciesMap() {
-		ArrayList<String> fetch = ReadFile.readFileString("./src/Character/proficiencies.txt");
-
-		for (String item : fetch) {
-			PROFICIENCIES.put(item, false);
-		}
-
 		ArrayList<String> raceList = this.race.getProficiency();
 		ArrayList<String> classList = this.characterClass.getProficiency();
 
 		for (String item : raceList) {
-			this.PROFICIENCIES.replace(item, true);
+			try {
+				this.PROFICIENCIES.put(item, true);
+			} catch (Exception e) {
+
+			}
+
 		}
 
 		for (String item : classList) {
-			this.PROFICIENCIES.replace(item, true);
+			try {
+				this.PROFICIENCIES.put(item, true);
+			} catch (Exception e) {
+
+			}
 		}
 	}
 
@@ -68,6 +71,14 @@ public class CharacterMain {
 			level = 4;
 		}
 
+	}
+
+	public boolean hasProficiency(String input) {
+		try {
+			return PROFICIENCIES.get(input);
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public void printSheet() {

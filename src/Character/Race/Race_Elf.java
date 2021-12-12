@@ -1,9 +1,10 @@
 package Character.Race;
 
-public class CharacterRaceDwarf extends CharacterRace{
-	public CharacterRaceDwarf() {
-		super.id = 101;
-		super.name = "Dwarf";
+public class Race_Elf extends Race {
+	public Race_Elf() {
+		super.id = 102;
+		super.name = "Elf";
+		super.darkVision = true;
 		super.size = 'm';
 
 		super.proficiency.add("battleaxe");
@@ -16,5 +17,7 @@ public class CharacterRaceDwarf extends CharacterRace{
 		super.proficiencyOptions.add("mason-tools");
 
 		super.setProficiency();
+		int[] temp = {0, 2, 0, 0, 0, 0};
+		super.setAttributes(temp);
 	}
 }

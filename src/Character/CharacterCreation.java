@@ -2,10 +2,10 @@ package Character;
 
 import Character.Classes.CharacterClass;
 import Character.Classes.CharacterClassFighter;
-import Character.Race.CharacterRace;
-import Character.Race.CharacterRaceDwarf;
+import Character.Race.Race;
+import Character.Race.Race_Dwarf;
 import Functionality.CheckParse;
-import Functionality.ReadFile;
+import Functionality.ConfirmChoice;
 import Functionality.Sort;
 
 import java.util.*;
@@ -14,7 +14,7 @@ public class CharacterCreation {
 	ArrayList<String> proficienciesList = new ArrayList<>();
 
 	public static CharacterMain createChar() {
-		CharacterRace race = selectRace();
+		Race race = selectRace();
 		CharacterClass oClass = selectClass();
 
 
@@ -52,7 +52,7 @@ public class CharacterCreation {
 					case 0:
 						output = new CharacterClassFighter();
 						System.out.println("You chose class: Fighter");
-						done = confirmChoice();
+						done = ConfirmChoice.confirmChoice();
 						break;
 					default:
 						System.out.println("Not valid selection");
@@ -65,14 +65,15 @@ public class CharacterCreation {
 		return output;
 	}
 
-	private static CharacterRace selectRace() {
+	private static Race selectRace() {
 		boolean done = false;
 
-		int selection = -1;
+		Race output = new Race();
 
 		while (!done) {
 			Scanner input = new Scanner(System.in);
-			System.out.println("Select a race:");
+			System.out.println("Select a race: \n" +
+					"0: Dwarf");
 
 
 			String line = input.nextLine();
@@ -83,9 +84,9 @@ public class CharacterCreation {
 				switch (option) {
 					case 0:
 						System.out.println("You selected: Dwarf");
-						done = confirmChoice();
-						return new CharacterRaceDwarf();
-						// break;
+						done = ConfirmChoice.confirmChoice();
+						output = new Race_Dwarf();
+						break;
 					default:
 						System.out.println("Not valid selection");
 						break;
@@ -95,32 +96,8 @@ public class CharacterCreation {
 			}
 
 		}
-		CharacterRace output = new CharacterRace();
+
 		return output;
-	}
-
-	private static boolean confirmChoice() {
-		boolean done = false;
-		boolean result = true;
-		while (!done) {
-			Scanner input = new Scanner(System.in);
-			System.out.println("Confirm choice? (y/n)");
-
-			switch (input.nextLine()) {
-				case "y":
-					result = true;
-					done = true;
-					break;
-				case "n":
-					result = false;
-					done = true;
-					break;
-				default:
-					System.out.println("Not a valid choice;");
-					break;
-			}
-		}
-		return result;
 	}
 
 	private static String selectName() {
@@ -136,7 +113,7 @@ public class CharacterCreation {
 			if (name.length() > 10) {
 				System.out.println("Name has max length of 10!");
 			} else {
-				done = confirmChoice();
+				done = ConfirmChoice.confirmChoice();
 			}
 
 
@@ -144,7 +121,7 @@ public class CharacterCreation {
 		return name;
 	}
 
-	private static int[] attributes(CharacterRace race){
+	private static int[] attributes(Race race){
 		boolean done = false;
 		int[] output = new int[6];
 		while (!done) {
@@ -205,7 +182,7 @@ public class CharacterCreation {
 			for (int i = 0; i < 6; i++) {
 				System.out.println(names[i] + ": " + output[i]);
 			}
-			done = confirmChoice();
+			done = ConfirmChoice.confirmChoice();
 		}
 		return output;
 	}
@@ -233,7 +210,7 @@ public class CharacterCreation {
 			for (int i = 0; i < 6; i++) {
 				System.out.println(names[i] + ": " + array[i]);
 			}
-			done = confirmChoice();
+			done = ConfirmChoice.confirmChoice();
 		}
 		return array;
 	}

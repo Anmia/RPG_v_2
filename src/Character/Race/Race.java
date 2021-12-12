@@ -6,19 +6,22 @@ import Functionality.ReadFile;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CharacterRace {
+public class Race {
 	protected int id;
 	protected String name;
 	protected int[] attributes = new int[6];
 	protected boolean darkVision;
+	protected int move;
 	protected char size;
+
+	protected int hpBonus = 0;
 
 	protected ArrayList<String> proficiency = new ArrayList<>();
 	protected ArrayList<String> proficiencyOptions = new ArrayList<>();
 	protected ArrayList<String> resistance = new ArrayList<>();
 	protected ArrayList<String> immunity = new ArrayList<>();
 
-	public CharacterRace() {
+	public Race() {
 
 	}
 
@@ -36,6 +39,10 @@ public class CharacterRace {
 
 	public boolean getDarkVision() {
 		return darkVision;
+	}
+
+	public void setAttributes(int[] attributes) {
+		this.attributes = attributes;
 	}
 
 	public ArrayList<String> getProficiency() {
