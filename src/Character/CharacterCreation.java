@@ -1,9 +1,7 @@
 package Character;
 
-import Character.Classes.CharacterClass;
-import Character.Classes.CharacterClassFighter;
-import Character.Race.Race;
-import Character.Race.Race_Dwarf;
+import Character.Classes.*;
+import Character.Race.*;
 import Functionality.CheckParse;
 import Functionality.ConfirmChoice;
 import Functionality.Sort;
@@ -11,36 +9,30 @@ import Functionality.Sort;
 import java.util.*;
 
 public class CharacterCreation {
-	ArrayList<String> proficienciesList = new ArrayList<>();
-
 	public static CharacterMain createChar() {
-		Race race = selectRace();
-		CharacterClass oClass = selectClass();
-
-
-
-
 		String name = selectName();
+
+		Race race = selectRace();
+		C_Jobb oClass = selectClass();
 
 		int[] attributes = attributes(race);
 
-
-		CharacterMain you = new CharacterMain(
+		return new CharacterMain(
 				name,
 				attributes,
 				oClass,
 				race
 		);
-		return you;
 	}
 
-	private static CharacterClass selectClass() {
+	private static C_Jobb selectClass() {
 		boolean done = false;
-		CharacterClass output = new CharacterClass();
+		C_Jobb output = new C_Jobb();
 		while (!done) {
 			Scanner input = new Scanner(System.in);
 			System.out.println("Select a class:\n" +
-					"0: Fighter");
+					"0: Barbarian \n" +
+					"4: Fighter");
 
 
 			String line = input.nextLine();
@@ -50,7 +42,12 @@ public class CharacterCreation {
 
 				switch (option) {
 					case 0:
-						output = new CharacterClassFighter();
+						output = new Class_Barbarian();
+						System.out.println("You chose class: Barbarian");
+						done = ConfirmChoice.confirmChoice();
+						break;
+					case 4:
+						output = new Class_Fighter();
 						System.out.println("You chose class: Fighter");
 						done = ConfirmChoice.confirmChoice();
 						break;
@@ -61,6 +58,15 @@ public class CharacterCreation {
 			} else {
 				System.out.println("Not valid selection");
 			}
+
+
+			if (done) {
+				output.setSkills();
+				if (output.getProficiencyOptions().size() != 0) {
+					output.setProficiency();
+				}
+			}
+
 		}
 		return output;
 	}
@@ -73,7 +79,8 @@ public class CharacterCreation {
 		while (!done) {
 			Scanner input = new Scanner(System.in);
 			System.out.println("Select a race: \n" +
-					"0: Dwarf");
+					"0: Dwarf \n" +
+					"1: Elf");
 
 
 			String line = input.nextLine();
@@ -87,12 +94,21 @@ public class CharacterCreation {
 						done = ConfirmChoice.confirmChoice();
 						output = new Race_Dwarf();
 						break;
+					case 1:
+						System.out.println("You selected: Elf");
+						done = ConfirmChoice.confirmChoice();
+						output = new Race_Elf();
+						break;
 					default:
 						System.out.println("Not valid selection");
 						break;
 				}
 			} else {
 				System.out.println("Not valid selection");
+			}
+
+			if (done && output.getProficiencyOptions().size() != 0) {
+				output.setProficiency();
 			}
 
 		}
@@ -213,9 +229,5 @@ public class CharacterCreation {
 			done = ConfirmChoice.confirmChoice();
 		}
 		return array;
-	}
-
-	private static void proficiencies (ArrayList<String> input) {
-
 	}
 }

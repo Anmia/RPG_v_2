@@ -1,4 +1,0 @@
-102:light armour:1
-102:medium armour:1
-102:heavy armour:1
-102:shield:1

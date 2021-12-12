@@ -9,8 +9,12 @@ import java.util.Scanner;
 public class Race {
 	protected int id;
 	protected String name;
+
 	protected int[] attributes = new int[6];
+
 	protected boolean darkVision;
+	protected int darkVisionRange;
+
 	protected int move;
 	protected char size;
 
@@ -25,6 +29,10 @@ public class Race {
 
 	}
 
+	public int getId() {
+		return id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -33,12 +41,24 @@ public class Race {
 		return attributes;
 	}
 
+	public boolean getDarkVision() {
+		return darkVision;
+	}
+
+	public int getDarkVisionRange() {
+		return darkVisionRange;
+	}
+
+	public int getMove() {
+		return move;
+	}
+
 	public char getSize() {
 		return size;
 	}
 
-	public boolean getDarkVision() {
-		return darkVision;
+	public int getHpBonus() {
+		return hpBonus;
 	}
 
 	public void setAttributes(int[] attributes) {
@@ -49,6 +69,10 @@ public class Race {
 		return proficiency;
 	}
 
+	public ArrayList<String> getProficiencyOptions() {
+		return proficiencyOptions;
+	}
+
 	public ArrayList<String> getResistance() {
 		return resistance;
 	}
@@ -57,7 +81,9 @@ public class Race {
 		return immunity;
 	}
 
-	protected void setProficiency() {
+
+
+	public void setProficiency() {
 		if (proficiencyOptions.size() != 0) {
 			boolean done = false;
 			while (!done) {

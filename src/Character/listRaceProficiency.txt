@@ -1,7 +1,0 @@
-102:smith-tools:0
-102:brewer-tools:0
-102:mason-tools:0
-102:battleaxe:1
-102:handaxe:1
-102:light hammer:1
-102:warhammer:1

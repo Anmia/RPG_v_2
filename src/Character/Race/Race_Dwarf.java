@@ -8,30 +8,29 @@ import java.util.Scanner;
 
 public class Race_Dwarf extends Race {
 	public Race_Dwarf() {
-		super.id = 101;
-		super.name = "Dwarf";
-		super.darkVision = true;
-		super.size = 'm';
-		super.move = 25;
+		id = 101;
+		name = "Dwarf";
 
-		super.proficiency.add("longsword");
-		super.proficiency.add("shortsword");
-		super.proficiency.add("shortbow");
-		super.proficiency.add("longbow");
+		darkVision = true;
+		darkVisionRange = 60;
 
-		super.proficiencyOptions.add("smith-tools");
-		super.proficiencyOptions.add("brewer-tools");
-		super.proficiencyOptions.add("mason-tools");
+		size = 'm';
+		move = 25;
 
-		super.resistance.add("poison");
+		proficiency.add("battleaxe");
+		proficiency.add("handaxe");
+		proficiency.add("light hammer");
+		proficiency.add("warhammer");
 
-		selectSubRace();
+		proficiencyOptions.add("smith's tools");
+		proficiencyOptions.add("brewer's tools");
+		proficiencyOptions.add("mason's tools");
 
-		super.setProficiency();
+		resistance.add("poison");
+
 		int[] temp = {0, 0, 2, 0, 0, 0};
-		super.setAttributes(temp);
-
-
+		setAttributes(temp);
+		selectSubRace();
 	}
 
 	private void selectSubRace() {
@@ -65,13 +64,15 @@ public class Race_Dwarf extends Race {
 				if(done) {
 					switch (option) {
 						case 0:
-							super.name = "Hill Dwarf";
-							this.attributes[4] = 1;
-							super.hpBonus = 1;
+							name = "Hill Dwarf";
+							attributes[4] = 1;
+							hpBonus = 1;
 							break;
 						case 1:
-							super.name = "Mountain Dwarf";
-							this.attributes[2] = 2;
+							name = "Mountain Dwarf";
+							attributes[0] = 2;
+							proficiency.add("medium armour");
+							proficiency.add("light armour");
 							break;
 						default:
 							System.out.println("Not valid selection");
