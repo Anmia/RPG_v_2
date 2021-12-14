@@ -5,6 +5,5 @@ public class Main {
 		CharacterMain you = CharacterCreation.createChar();
 
 		you.printSheet();
-
 	}
 }

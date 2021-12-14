@@ -1,6 +1,7 @@
 package Character;
 
 import Character.Classes.C_Jobb;
+import Character.Inventory.Inventory;
 import Character.Race.Race;
 import Functionality.CharacterSetup;
 
@@ -32,6 +33,7 @@ public class CharacterMain {
 	private ArrayList<String> RESISTANCES = new ArrayList();
 	private ArrayList<String> IMMUNITIES = new ArrayList<>();
 
+	private Inventory inventory;
 
 	public CharacterMain(String name, int[] attributes, C_Jobb characterClass, Race race) {
 
