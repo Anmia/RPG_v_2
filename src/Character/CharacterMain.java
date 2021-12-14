@@ -33,7 +33,7 @@ public class CharacterMain {
 	private ArrayList<String> RESISTANCES = new ArrayList();
 	private ArrayList<String> IMMUNITIES = new ArrayList<>();
 
-	private Inventory inventory;
+	private Inventory inventory = new Inventory();
 
 	public CharacterMain(String name, int[] attributes, C_Jobb characterClass, Race race) {
 
